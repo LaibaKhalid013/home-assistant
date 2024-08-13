@@ -856,14 +856,5 @@
         "name": "Sterilization"
       }
     }
-  },
-  "device_automation": {
-    "trigger_type": {
-      "turned_off": "{entity_name} turned off",
-      "turned_on": "{entity_name} turned on",
-      "click": "{entity_name} clicked",
-      "double_click": "{entity_name} double clicked",
-      "press": "{entity_name} long pressed"
-    }
   }
 }
