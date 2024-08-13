@@ -11,14 +11,13 @@ from homeassistant.components.event import (
     EventEntity,
     EventEntityDescription,
 )
-from homeassistant.const import CONF_DEVICE_ID, CONF_ENTITY_ID, CONF_TYPE
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from . import TuyaConfigEntry
 from .base import EnumTypeData, TuyaEntity
-from .const import TUYA_DISCOVERY_NEW, TUYA_HA_EVENT, DPCode, DPType
+from .const import TUYA_DISCOVERY_NEW, DPCode, DPType
 
 # All descriptions can be found here. Mostly the Enum data types in the
 # default status set of each category (that don't have a set instruction)
@@ -160,9 +159,3 @@ class TuyaEventEntity(TuyaEntity, EventEntity):
         if TYPE_CHECKING:
             assert self.device_entry
             assert self.registry_entry
-        event_data = {
-            CONF_DEVICE_ID: self.device_entry.id,
-            CONF_ENTITY_ID: self.registry_entry.id,
-            CONF_TYPE: value,
-        }
-        self.hass.bus.async_fire(TUYA_HA_EVENT, event_data)
