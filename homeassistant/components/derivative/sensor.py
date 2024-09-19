@@ -216,10 +216,10 @@ class DerivativeSensor(RestoreSensor, SensorEntity):
     def _calc_derivative_on_state_change_and_max_sub_interval(
         self, event: Event[EventStateChangedData]
     ) -> None:
-        """Integrate based on state change and time.
+        """Calculate derivative based on state change and time.
 
-        Next to doing the integration based on state change this method cancels and
-        reschedules time based integration.
+        Next to doing the derivative based on state change, this method cancels and
+        reschedules time based calculation.
         """
         self._cancel_max_sub_interval_exceeded_callback()
         old_state = event.data["old_state"]
@@ -328,7 +328,7 @@ class DerivativeSensor(RestoreSensor, SensorEntity):
             def _calc_derivative_on_max_sub_interval_exceeded_callback(
                 now: datetime,
             ) -> None:
-                """Integrate based on time and reschedule."""
+                """Calculate derivative based on time and reschedule."""
 
                 elapsed_seconds = Decimal(
                     (now - self._last_derivative_time).total_seconds()
