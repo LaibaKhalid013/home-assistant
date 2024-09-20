@@ -16,8 +16,8 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from . import TuyaConfigEntry
-from .base import EnumTypeData, TuyaEntity
 from .const import TUYA_DISCOVERY_NEW, DPCode, DPType
+from .entity import EnumTypeData, TuyaEntity
 
 # All descriptions can be found here. Mostly the Enum data types in the
 # default status set of each category (that don't have a set instruction)
