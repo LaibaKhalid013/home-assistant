@@ -9,6 +9,7 @@ import pytest
 
 from homeassistant.components import cloud
 from homeassistant.components.cloud import CloudNotAvailable
+from homeassistant.components.monzo import MonzoConfigEntry
 from homeassistant.components.monzo.const import (
     DOMAIN,
     EVENT_TRANSACTION_CREATED,
@@ -21,7 +22,7 @@ from homeassistant.components.webhook import (
 from homeassistant.core import HomeAssistant
 
 from . import setup_integration
-from .conftest import TEST_ACCOUNTS, MonzoMockConfigEntry
+from .conftest import TEST_ACCOUNTS
 
 from tests.common import MockConfigEntry
 from tests.components.cloud import mock_cloud
@@ -42,7 +43,7 @@ class WebhookSetupData:
 async def webhook_setup(
     hass: HomeAssistant,
     monzo: AsyncMock,
-    polling_config_entry: MonzoMockConfigEntry,
+    polling_config_entry: MonzoConfigEntry,
     hass_client_no_auth: ClientSessionGenerator,
 ) -> WebhookSetupData:
     """Set up integration, client and webhook url."""
@@ -106,7 +107,7 @@ async def test_webhook_with_unexpected_type(
 async def test_cloudhook(
     hass: HomeAssistant,
     monzo: AsyncMock,
-    polling_config_entry: MonzoMockConfigEntry,
+    polling_config_entry: MonzoConfigEntry,
 ) -> None:
     """Test cloudhook setup."""
     await mock_cloud(hass)
