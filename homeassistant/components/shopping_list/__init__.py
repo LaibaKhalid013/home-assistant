@@ -220,6 +220,15 @@ class ShoppingData:
         )
         return item
 
+    async def remove_by_name(
+        self, name: str, context: Context | None = None
+    ) -> dict[str, JsonValueType] | None:
+        """Remove the first item with matching `name`."""
+        item = next((itm for itm in self.items if itm["name"] == name), None)
+        if item and isinstance(item["id"], str):
+            await self.async_remove(str(item["id"]), context)
+        return item
+
     async def async_remove(
         self, item_id: str, context: Context | None = None
     ) -> dict[str, JsonValueType] | None:
@@ -241,10 +250,11 @@ class ShoppingData:
         for item_id in item_ids:
             _LOGGER.debug(
                 "Removing %s",
+                item_id,
             )
             if not (item := items_dict.pop(item_id, None)):
                 raise NoMatchingShoppingListItem(
-                    "Item '{item_id}' not found in shopping list"
+                    f"Item '{item_id}' not found in shopping list"
                 )
             removed.append(item)
         self.items = list(items_dict.values())

@@ -4,6 +4,28 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers import intent
 
 
+async def test_remove_item_intent(hass: HomeAssistant, sl_setup) -> None:
+    """Test remove item."""
+    await intent.async_handle(
+        hass, "test", "HassShoppingListAddItem", {"item": {"value": "beer"}}
+    )
+
+    response = await intent.async_handle(
+        hass, "test", "HassShoppingListRemoveItem", {"item": {"value": "beer"}}
+    )
+
+    assert response.speech["plain"]["speech"] == "Removed beer from your shopping list"
+
+
+async def test_remove_item_intent_not_found(hass: HomeAssistant, sl_setup) -> None:
+    """Test remove item."""
+    response = await intent.async_handle(
+        hass, "test", "HassShoppingListRemoveItem", {"item": {"value": "beer"}}
+    )
+
+    assert response.speech["plain"]["speech"] == "beer is not on your shopping list"
+
+
 async def test_recent_items_intent(hass: HomeAssistant, sl_setup) -> None:
     """Test recent items."""
     await intent.async_handle(
