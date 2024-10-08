@@ -67,7 +67,6 @@ class Concord232Alarm(AlarmControlPanelEntity):
     """Representation of the Concord232-based alarm panel."""
 
     _attr_code_format = CodeFormat.NUMBER
-    _attr_state: str | None
     _attr_supported_features = (
         AlarmControlPanelEntityFeature.ARM_HOME
         | AlarmControlPanelEntityFeature.ARM_AWAY
@@ -133,7 +132,9 @@ class Concord232Alarm(AlarmControlPanelEntity):
         if isinstance(self._code, str):
             alarm_code = self._code
         else:
-            alarm_code = self._code.render(from_state=self._attr_state, to_state=state)
+            alarm_code = self._code.render(
+                from_state=self._attr_alarm_state, to_state=state
+            )
         check = not alarm_code or code == alarm_code
         if not check:
             _LOGGER.warning("Invalid code given for %s", state)
