@@ -774,6 +774,14 @@
           "normal": "Delicate"
         }
       }
+    },
+    "text": {
+      "absolute_to_start": {
+        "name": "Schedule turn-on"
+      },
+      "absolute_to_stop": {
+        "name": "Schedule turn-off"
+      }
     }
   }
 }
