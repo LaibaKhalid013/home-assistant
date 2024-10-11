@@ -944,7 +944,7 @@ jobs:
             -qq \
             --timeout=9 \
             --durations=10 \
-            -n auto \
+            -n 1 \
             --dist=loadfile \
             ${cov_params[@]} \
             -o console_output_style=count \
@@ -1338,7 +1338,7 @@ jobs:
           python3 -b -X dev -m pytest \
             -qq \
             --timeout=9 \
-            -n auto \
+            -n 1 \
             ${cov_params[@]} \
             -o console_output_style=count \
             --durations=0 \
