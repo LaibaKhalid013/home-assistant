@@ -291,7 +291,7 @@ class DataUpdateCoordinator(BaseDataUpdateCoordinatorProtocol, Generic[_DataT]):
                 "for coordinators with a config entry and will stop working in "
                 "Home Assistant 2025.11",
                 error_if_core=True,
-                error_if_integration=False,
+                error_if_integration=False,3l
             )
         elif (
             self.config_entry.state
