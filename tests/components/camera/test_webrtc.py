@@ -34,12 +34,12 @@ async def test_async_register_webrtc_provider(
     class TestProvider(CameraWebRTCProvider):
         """Test provider."""
 
-        async def async_is_supported(self, stream_source: str) -> bool:
+        def async_is_supported(self, stream_source: str) -> bool:
             """Determine if the provider supports the stream source."""
             nonlocal stream_supported
             return stream_supported
 
-        async def async_handle_web_rtc_offer(
+        async def async_handle_webrtc_offer(
             self, camera: Camera, offer_sdp: str
         ) -> str | None:
             """Handle the WebRTC offer and return an answer."""
@@ -79,11 +79,11 @@ async def test_async_register_webrtc_provider_twice(
     class TestProvider(CameraWebRTCProvider):
         """Test provider."""
 
-        async def async_is_supported(self, stream_source: str) -> bool:
+        def async_is_supported(self, stream_source: str) -> bool:
             """Determine if the provider supports the stream source."""
             return True
 
-        async def async_handle_web_rtc_offer(
+        async def async_handle_webrtc_offer(
             self, camera: Camera, offer_sdp: str
         ) -> str | None:
             """Handle the WebRTC offer and return an answer."""
@@ -105,11 +105,11 @@ async def test_async_register_webrtc_provider_camera_not_loaded(
     class TestProvider(CameraWebRTCProvider):
         """Test provider."""
 
-        async def async_is_supported(self, stream_source: str) -> bool:
+        def async_is_supported(self, stream_source: str) -> bool:
             """Determine if the provider supports the stream source."""
             return True
 
-        async def async_handle_web_rtc_offer(
+        async def async_handle_webrtc_offer(
             self, camera: Camera, offer_sdp: str
         ) -> str | None:
             """Handle the WebRTC offer and return an answer."""
