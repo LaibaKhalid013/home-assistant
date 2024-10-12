@@ -25,6 +25,10 @@ CLIENT_ID = OAUTH2_CLIENTID
 CLIENT_SECRET = OAUTH2_CLIENTSECRET
 
 
+@pytest.mark.parametrize(  # Remove when translations fixed
+    "ignore_translations",
+    ["component.ondilo_ico.config.abort.single_instance_allowed"],
+)
 async def test_abort_if_existing_entry(hass: HomeAssistant) -> None:
     """Check flow abort when an entry already exist."""
     MockConfigEntry(domain=DOMAIN).add_to_hass(hass)
